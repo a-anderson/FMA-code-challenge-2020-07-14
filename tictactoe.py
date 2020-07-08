@@ -84,6 +84,11 @@ def player_quits(player_move: str) -> bool:
         return True
     return False
 
+def coordinate_is_free(player_move: str, board: dict) -> bool:
+    if board[player_move] == "_":
+        return True
+    return False
+
 def play() -> None:
     '''
     Game algorithm for a simple 2-player CLI Tic Tac Toe game.
