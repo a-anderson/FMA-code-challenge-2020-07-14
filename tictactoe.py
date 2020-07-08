@@ -70,13 +70,14 @@ def print_board(board: dict) -> None:
           )
 
 def player_instructions(player: int) -> str:
-    print(f"Player {player}, enter coordinates row,column to place your {PLAYER_SYMBOLS[player]}" 
-          "\n\tor enter q to quit the game.")
+    print(f"Player {player}, enter coordinates <row>,<column> to place your '{PLAYER_SYMBOLS[player]}'" 
+          "\n\tor enter 'q' to quit the game.")
 
 
-def move_is_valid(player_move: str) -> bool:
+def move_is_valid(player_move: str, board: dict) -> bool:
     if player_move in COORDINATES:
-        return True
+        if board[player_move] == '_':
+            return True
     return False
 
 def player_quits(player_move: str) -> bool:
@@ -84,10 +85,6 @@ def player_quits(player_move: str) -> bool:
         return True
     return False
 
-def coordinate_is_free(player_move: str, board: dict) -> bool:
-    if board[player_move] == "_":
-        return True
-    return False
 
 def play() -> None:
     '''
@@ -99,9 +96,17 @@ def play() -> None:
     print_board(board)
     active_player = 1
     winner = None
+    turn_number = 1
     while True:
         player_instructions(active_player)
         player_move = re.sub(r"[()\s]", "", input("Coordinates: "))
-        break
+        if move_is_valid(player_move):
+            board[player_move] = PLAYER_SYMBOLS[active_player]
+        elif player_quits(player_move):
+            winner = OPPONENTS[active_player]
+            break
+        else:
+            pass
+
 
     pass
