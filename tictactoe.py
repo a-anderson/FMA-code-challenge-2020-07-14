@@ -20,6 +20,7 @@
 #     switch players
 #
 # print game results to console
+import re
 
 COORDINATES = {"1,1", "1,2", "1,3",
                "2,1", "2,2", "2,3",
@@ -45,7 +46,7 @@ def generate_board() -> dict:
     Generates an empty board layout
     :return: dict: primary board setup.
     """
-    board = {
+    return {
         "1,1": "_",
         "1,2": "_",
         "1,3": "_",
@@ -56,7 +57,6 @@ def generate_board() -> dict:
         "3,2": "_",
         "3,3": "_",
     }
-    return board
 
 
 def print_board(board: dict) -> None:
@@ -74,6 +74,11 @@ def player_instructions(player: int) -> str:
           "\n\tor enter q to quit the game.")
 
 
+def move_is_valid(player_move: str) -> bool:
+    if player_move in COORDINATES or re.fullmatch("[Qq]", player_move):
+        return True
+    return False
+
 def play() -> None:
     '''
     Game algorithm for a simple 2-player CLI Tic Tac Toe game.
@@ -86,6 +91,7 @@ def play() -> None:
     winner = None
     while True:
         player_instructions(active_player)
+        player_move = re.sub(r"[()\s]", "", input("Coordinates: "))
         break
 
     pass
