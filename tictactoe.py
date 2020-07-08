@@ -75,7 +75,12 @@ def player_instructions(player: int) -> str:
 
 
 def move_is_valid(player_move: str) -> bool:
-    if player_move in COORDINATES or re.fullmatch("[Qq]", player_move):
+    if player_move in COORDINATES:
+        return True
+    return False
+
+def player_quits(player_move: str) -> bool:
+    if re.fullmatch("[Qq]", player_move):
         return True
     return False
 
