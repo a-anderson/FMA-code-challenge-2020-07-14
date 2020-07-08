@@ -60,7 +60,7 @@ def generate_board() -> dict:
 
 
 def print_board(board: dict) -> None:
-    print("\n\tYour Board" + "\t"*5 + "Coordinates\n"
+    print("\n\tGame Board" + "\t"*5 + "Coordinates\n"
           f"\n|\t{board['1,1']}\t{board['1,2']}\t{board['1,3']}\t|"
           "\t\t|\t(1,1)\t(1,2)\t(1,3)\t|" # end of line 1
           f"\n|\t{board['2,1']}\t{board['2,2']}\t{board['2,3']}\t|"
@@ -70,7 +70,7 @@ def print_board(board: dict) -> None:
           )
 
 def player_instructions(player: int) -> str:
-    print(f"Player {player}, enter coordinates <row>,<column> to place your '{PLAYER_SYMBOLS[player]}'" 
+    print(f"Player {player}, enter coordinates '<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'" 
           "\n\tor enter 'q' to quit the game.")
 
 
@@ -86,6 +86,13 @@ def player_quits(player_move: str) -> bool:
     return False
 
 
+def quit_message(player: int) -> None:
+    print(f"Player {player} has quit the game.")
+
+
+def invalid_input(input: str) -> None:
+    print(f"\nI'm sorry, {input} is not valid. Check that your square is free and try again.\n")
+
 def play() -> None:
     '''
     Game algorithm for a simple 2-player CLI Tic Tac Toe game.
@@ -100,13 +107,17 @@ def play() -> None:
     while True:
         player_instructions(active_player)
         player_move = re.sub(r"[()\s]", "", input("Coordinates: "))
-        if move_is_valid(player_move):
+        if move_is_valid(player_move, board):
             board[player_move] = PLAYER_SYMBOLS[active_player]
         elif player_quits(player_move):
             winner = OPPONENTS[active_player]
+            quit_message(active_player)
             break
         else:
-            pass
+            invalid_input(player_move)
+            continue
+
+
 
 
     pass
