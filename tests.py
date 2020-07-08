@@ -1,14 +1,6 @@
 import pytest
 import tictactoe
 
-def test_always_passes() -> None:
-    assert True, "This should pass"
-
-
-def test_always_fails() -> None:
-    assert False, "This should fail"
-
-
 def test_move_is_valid_true() -> None:
     assert tictactoe.move_is_valid("1,3") == True, "Accepts valid player input"
 
