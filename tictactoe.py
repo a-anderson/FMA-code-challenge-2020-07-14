@@ -116,6 +116,14 @@ def is_winner(player_move: str, board: dict) -> bool:
                 return True
     return False
 
+def end_of_game_message(winner: int) -> None:
+    if winner:
+        print(f"!!PLAYER {winner} HAS WON THE GAME!!\n"
+              f"!!CONGRATULATIONS PLAYER {winner}!!")
+    else:
+        print(f"The game is a draw - an even match!")
+    pass
+
 def play() -> None:
     '''
     Game algorithm for a simple 2-player CLI Tic Tac Toe game.
@@ -139,7 +147,8 @@ def play() -> None:
         else:
             invalid_input(player_move)
             continue
-        if is_winner(board):
+        print_board(board)
+        if is_winner(player_move, board):
             winner = active_player
             break
         if turn_number == 9:
@@ -147,7 +156,5 @@ def play() -> None:
         turn_number += 1
         active_player = OPPONENTS[active_player]
 
+    end_of_game_message(winner)
 
-
-
-    pass
