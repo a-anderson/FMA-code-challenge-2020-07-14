@@ -21,6 +21,7 @@
 #
 # print game results to console
 import re
+from typing import Union
 
 COORDINATES = {"1,1", "1,2", "1,3",
                "2,1", "2,2", "2,3",
@@ -34,6 +35,17 @@ PLAYER_SYMBOLS = {
 OPPONENTS = {
     1: 2,
     2: 1
+}
+
+WIN_LOCATIONS = {
+    "row1": {"1,1", "1,2", "1,3"},
+    "row2": {"2,1", "2,2", "2,3"},
+    "row3": {"3,1", "3,2", "3,3"},
+    "column1": {"1,1", "2,1", "3,1"},
+    "column2": {"1,2", "2,2", "3,2"},
+    "column3": {"1,3", "2,3", "3,3"},
+    "diagonal1": {"1,1", "2,2", "3,3"},
+    "diagonal2": {"1,3", "2,2", "3,1"}
 }
 
 def welcome_message() -> None:
@@ -93,6 +105,17 @@ def quit_message(player: int) -> None:
 def invalid_input(input: str) -> None:
     print(f"\nI'm sorry, {input} is not valid. Check that your square is free and try again.\n")
 
+def is_winner(player_move: str, board: dict) -> bool:
+    for win_locations in WIN_LOCATIONS.keys():
+        winning_sequence = WIN_LOCATIONS[win_locations]
+        if player_move in winning_sequence:
+            player_moves_in_sequence = set()
+            for square in winning_sequence:
+                player_moves_in_sequence.add(board[square])
+            if len(player_moves_in_sequence) == 1:
+                return True
+    return False
+
 def play() -> None:
     '''
     Game algorithm for a simple 2-player CLI Tic Tac Toe game.
@@ -116,6 +139,13 @@ def play() -> None:
         else:
             invalid_input(player_move)
             continue
+        if is_winner(board):
+            winner = active_player
+            break
+        if turn_number == 9:
+            break
+        turn_number += 1
+        active_player = OPPONENTS[active_player]
 
 
 
