@@ -48,10 +48,12 @@ WIN_LOCATIONS = {
     "diagonal2": {"1,3", "2,2", "3,1"}
 }
 
+
 def welcome_message() -> None:
     print("Welcome to Ashley's 2-player Tic Tac Toe!"
           "\n\tGet ready to have some fun!"
           "\n\nHere is the board layout:")
+
 
 def generate_board() -> dict:
     """
@@ -81,6 +83,7 @@ def print_board(board: dict) -> None:
           "\t\t|\t(3,1)\t(3,2)\t(3,3)\t|\n" # end of line 3
           )
 
+
 def player_instructions(player: int) -> str:
     print(f"Player {player}, enter coordinates '<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'" 
           "\n\tor enter 'q' to quit the game.")
@@ -92,8 +95,9 @@ def move_is_valid(player_move: str, board: dict) -> bool:
             return True
     return False
 
+
 def player_quits(player_move: str) -> bool:
-    if re.fullmatch("[Qq]", player_move):
+    if re.fullmatch("[Qq]", player_move) or player_move.lower == 'quit':
         return True
     return False
 
@@ -103,7 +107,9 @@ def quit_message(player: int) -> None:
 
 
 def invalid_input(input: str) -> None:
-    print(f"\nI'm sorry, {input} is not valid. Check that your square is free and try again.\n")
+    print(f"\nI'm sorry, {input} is not valid."
+          " Check that your square is free and try again.\n")
+
 
 def is_winner(player_move: str, board: dict) -> bool:
     for win_locations in WIN_LOCATIONS.keys():
@@ -116,19 +122,21 @@ def is_winner(player_move: str, board: dict) -> bool:
                 return True
     return False
 
+
 def end_of_game_message(winner: int) -> None:
     if winner:
         print(f"!!PLAYER {winner} HAS WON THE GAME!!\n"
               f"!!CONGRATULATIONS PLAYER {winner}!!")
     else:
-        print(f"The game is a draw - an even match!")
+        print("The game is a draw - an even match!")
     pass
 
+
 def play() -> None:
-    '''
+    """
     Game algorithm for a simple 2-player CLI Tic Tac Toe game.
     :return: None
-    '''
+    """
     welcome_message()
     board = generate_board()
     print_board(board)
