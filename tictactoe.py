@@ -126,7 +126,6 @@ def play() -> None:
         if move_is_valid(player_move, board):
             board[player_move] = PLAYER_SYMBOLS[active_player]
         elif player_quits(player_move):
-            winner = OPPONENTS[active_player]
             quit_message(active_player)
             break
         else:
@@ -143,3 +142,10 @@ def play() -> None:
 
     end_of_game_message(winner)
 
+if __name__ == "__main__":
+    while True:
+        play()
+        play_again = input("Would you like to play again? [Y/n]").strip().lower()
+        if not play_again == 'y' and play_again:
+            break
+    print("Thank you for playing Ashley's Tic Tac Toe.\n\tI hope you had fun!")
