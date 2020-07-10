@@ -35,7 +35,7 @@ def test_is_winner_return_false_if_not_winning_sequence() -> None:
 
 
 @pytest.mark.parametrize("winner, expected_output, output_str",
-                         [(None, f"The game is a draw - an even match!\n", "Prints no winner message if draw"),
+                         [(None, "GAME OVER\n", "Prints no winner message if draw"),
                           (2, (f"!!PLAYER 2 HAS WON THE GAME!!\n"
                                f"!!CONGRATULATIONS PLAYER 2!!\n"),
                            "Prints winning message if winner")])
@@ -48,7 +48,7 @@ def test_end_of_game_message(capsys, winner, expected_output, output_str) -> Non
 @pytest.mark.parametrize("input_coordinates, expected_output",
                          [(["1,1", "2,2", "2,1", "1,3", "3,1"], "!!CONGRATULATIONS PLAYER 1!!\n"),
                           (["1,1", "2,2", "2,1", "1,3", "1,2", "3,1"], "!!CONGRATULATIONS PLAYER 2!!\n"),
-                          (["2,2", "1,2", "1,3", "1,1", "2,1", "2,3", "3,2", "3,1", "3,3"], "The game is a draw - an even match!\n")
+                          (["2,2", "1,2", "1,3", "1,1", "2,1", "2,3", "3,2", "3,1", "3,3"], "GAME OVER\n")
                           ])
 def test_play(capsys, input_coordinates, expected_output) -> None:
 
@@ -58,6 +58,6 @@ def test_play(capsys, input_coordinates, expected_output) -> None:
     tictactoe.input = mock_input
     tictactoe.play()
     out, err = capsys.readouterr()
-    str_length = len(expected_output)
-    assert out[-str_length:] == expected_output, "Play correctly prints winning player"
+    str_length = len(expected_output) + len(tictactoe.DIVIDER) + 1
+    assert out[-str_length:] == f"{expected_output}{tictactoe.DIVIDER}\n", "Play correctly prints winning player"
 
