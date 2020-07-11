@@ -9,3 +9,4 @@ install:
 # command to run tests
 script:
   - pytest tests.py
+  - flake8 tictactoe.py tests.py --max-line-length=100
