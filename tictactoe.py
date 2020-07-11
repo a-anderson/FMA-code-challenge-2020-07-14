@@ -28,6 +28,7 @@ WIN_LOCATIONS = {
 
 DIVIDER = f"{'=' * 40}"
 
+
 def welcome_message() -> None:
     print("Welcome to Ashley's 2-player Tic Tac Toe!"
           "\n\tGet ready to have some fun!")
@@ -55,16 +56,17 @@ def print_board(board: dict) -> None:
     print("Here is the current board layout:\n"
           "\n\tGame Board" + "\t"*4 + "Coordinates\n"
           f"\n|\t{board['1,1']}\t{board['1,2']}\t{board['1,3']}\t|"
-          "\t|\t(1,1)\t(1,2)\t(1,3)\t|" # end of line 1
+          "\t|\t(1,1)\t(1,2)\t(1,3)\t|"  # end of line 1
           f"\n|\t{board['2,1']}\t{board['2,2']}\t{board['2,3']}\t|"
-          "\t|\t(2,1)\t(2,2)\t(2,3)\t|" # end of line 2
+          "\t|\t(2,1)\t(2,2)\t(2,3)\t|"  # end of line 2
           f"\n|\t{board['3,1']}\t{board['3,2']}\t{board['3,3']}\t|"
-          "\t|\t(3,1)\t(3,2)\t(3,3)\t|\n" # end of line 3
+          "\t|\t(3,1)\t(3,2)\t(3,3)\t|\n"  # end of line 3
           )
 
 
 def player_instructions(player: int) -> None:
-    print(f"Player {player}, enter coordinates '<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'" 
+    print(f"Player {player}, enter coordinates"
+          "'<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'"
           "\n\tor enter 'q' to quit the game.")
 
 
@@ -164,6 +166,7 @@ def play() -> None:
     print_divider()
     end_of_game_message(winner)
     print_divider()
+
 
 if __name__ == "__main__":
     while True:
