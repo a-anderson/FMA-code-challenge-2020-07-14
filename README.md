@@ -36,7 +36,7 @@ If you decided to install `pytest`, the tests can be run by running the followin
 pytest tests.py
 ```
 
-An optional `-v` command can be added to the end of the call for a deeper explanation of the tests as they are being tested. Also note that the final three tests for `test_play()` will take a little longer to complete, which is caused by the time delay (`time.sleep()`) before transitioning from the acceptance/rejection of player input 
+An optional `-v` command can be added to the end of the call for a deeper explanation of the tests as they are being tested. Also note that the final three tests for `test_play()` will take a little longer to complete, which is caused by the time delay (`time.sleep()`) before transitioning from the acceptance/rejection of player input. 
 
 Pythonic styling can be checked using the `flake8` library (also in the requirements.txt file). To check styling for both the tictactoe.py and tests.py files run the following command:
 
@@ -47,8 +47,8 @@ flake8 tests.py tictactoe.py --max-line-length=100
 Note that I have specified the maximum line length to 100 characters, rather than the conventional 80 characters. 
 
 ## Discussion
-### My Approach
-#### Game
+### My Approach:
+### Game 
 **Using Base Python** \
 I chose to use libraries that are available in base python for this game. This served firstly to reduce the setup time to get everything up and running.
 
@@ -73,21 +73,24 @@ Although this was not a part of the submission guidelines, I included the option
 1. It makes it much easier for the user to manually test a set of different conditions without needing to call the file over and over again.
 2. Every (simple) computer game that I have played (and finished) gives players the option to play again. It didn't feel right not include that option.
 
-#### Testing
+### Testing
+
 Python has a range of testing suites, and among the most popular are `unittest` and `pytest`. One advantage of unittest is that it included in the base Python library, and therefore requires no extra installation. However, I personally find the structure of unittest test classes much more difficult to understand, and much slower to set up than `pytest`. As mentioned above, I am much more comfortable setting up scripts in a functional format, and `pytest` allowed me to do just that. 
 
 `pytest` also has a lot of extra functionality that allows for multiple tests to be condensed into one, for greater understandability for anyone reading the test script. I explain a bit more about one particularly useful `pytest` feature in the "What I Learned" section a bit further down.
 
-#### Code Styling
+### Code Styling
 I used `flake8` to check that I was following the PEP8 style guidelines, which I tried to adhere to as much as possible. As can be seen in the `flake8` command above, I have changed the line length to 100 characters rather than the conventional 80 character limit. This was simply due to the fact that I find 100 a bit easier to work with, particularly when using long strings (for printing the board).
 
-#### Continuous Integration
+I also used type-hinting in all of the tic tac toe functions. 
+
+### Continuous Integration
 I used Travis for automated testing. For a project so small as this it is probably not necessary to have used this tool, however, I included it for three reasons:
 1. To ensure that the code ran on multiple versions of python.
 2. To allow any interested parties to see that all tests pass without needing to test everything for themselves.
 3. To catch any mistakes that I have made in the event that I forget to test the code before I commit it to the repository.  
 
 ### What I Learned
-Although I have used `pytest` for small projects before, I have never used it to test standard output or for mocking user input. I used the `pytest` documentation to find the appropriate tools for the job. This lead me to `capsys` and subsequently to the `pytest.mark.paramaterize` decorator. This made it much easier to test multiple outputs for a single function. This allowed four separate tests to be condensed down to one, making to test code much easier to understand, rather than just having many similarly named test functions stacked on top of one another. 
+Although I have used `pytest` for small projects before, I have never used it to test standard output or for mocking user input. I used the `pytest` documentation to find the appropriate tools for the job. This lead me to `capsys` and subsequently to the `pytest.mark.paramaterize` decorator. This made it much easier to test multiple outputs for a single function. This allowed four separate tests to be condensed down to one, making to test code much easier to understand rather than just having many similarly named test functions stacked on top of one another. 
 
 ### Possible Improvements
