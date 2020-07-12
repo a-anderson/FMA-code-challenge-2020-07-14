@@ -1,5 +1,6 @@
 import re
 import time
+from typing import Optional
 
 COORDINATES = {"1,1", "1,2", "1,3",
                "2,1", "2,2", "2,3",
@@ -180,7 +181,7 @@ def is_winner(player_move: str, board: dict) -> bool:
     return False
 
 
-def end_of_game_message(winner: int) -> None:
+def end_of_game_message(winner: Optional[int]) -> None:
     '''
     Prints a message to the console stating the winning player.
     :param winner: int: {1 or 2} The player who has won the game.
