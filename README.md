@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/a-anderson/FMA-code-challenge-2020-07-14.svg?branch=master)](https://travis-ci.com/a-anderson/FMA-code-challenge-2020-07-14)
+
 # FMA Coding Challenge - Tic Tac Toe
 **Author: Ashley Anderson**\
 **Submit By: 14th July 2020**
