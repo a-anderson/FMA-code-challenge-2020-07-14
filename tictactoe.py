@@ -1,6 +1,6 @@
 import re
 import time
-from typing import Optional
+from typing import Optional, Dict
 
 COORDINATES = {"1,1", "1,2", "1,3",
                "2,1", "2,2", "2,3",
@@ -57,10 +57,10 @@ def welcome_message() -> None:
     print_divider()
 
 
-def generate_board() -> dict:
+def generate_board() -> Dict[str, str]:
     """
     Generates an empty board layout
-    :return: dict: primary board setup.
+    :return: Dict[str, str]: primary board setup.
     """
     return {
         "1,1": "_",
@@ -75,10 +75,10 @@ def generate_board() -> dict:
     }
 
 
-def print_board(board: dict) -> None:
+def print_board(board: Dict[str, str]) -> None:
     '''
     Prints the current game board layout.
-    :param board: dict: positions of the board and what they contain
+    :param board: Dict[str, str]: positions of the board and what they contain
     :return: None
     '''
     print("Here is the current board layout:\n"
@@ -104,11 +104,11 @@ def player_instructions(player: int) -> None:
           "\n\tor enter 'q' to quit the game.")
 
 
-def move_is_valid(player_move: str, board: dict) -> bool:
+def move_is_valid(player_move: str, board: Dict[str, str]) -> bool:
     '''
     Identifies whether or not a player has entered a valid coordinate
     :param player_move: str: coordinate on the game board.
-    :param board: dict: the current game board layout.
+    :param board: Dict[str, str]: the current game board layout.
     :return: bool: indicates whether a move is valid (True) or not (False).
     '''
     if player_move in COORDINATES:
@@ -162,11 +162,11 @@ def invalid_input(input: str) -> None:
     print_divider(time_delay=True)
 
 
-def is_winner(player_move: str, board: dict) -> bool:
+def is_winner(player_move: str, board: Dict[str, str]) -> bool:
     '''
     Identifies whether the player_move has won the game.
     :param player_move: str: coordinate on the game board.
-    :param board: dict: the current game board set up.
+    :param board: Dict[str, str]: the current game board set up.
     :return: bool: {True or False} showing whether or not a player
     has won the game.
     '''
