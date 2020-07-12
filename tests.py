@@ -2,6 +2,20 @@ import pytest
 import tictactoe
 
 
+def generate_filled_board(win_state, player_move, winning_locations):
+    board = tictactoe.generate_board()
+    if win_state:
+        for location in winning_locations:
+            board[location] = 'X'
+    else:
+        for location in winning_locations:
+            if location == player_move:
+                board[location] = 'X'
+            else:
+                board[location] = '0'
+    return board
+
+
 @pytest.mark.parametrize("input_coordinate, expected_output, output_str",
                          [("1,3", True, "Accepts valid player input"),
                           ("1,4", False, "Rejects invalid player input"),
@@ -21,18 +35,23 @@ def test_player_quits(player_input, expected_output) -> None:
         "Correctly accepts/rejects quit input"
 
 
-def test_is_winner_return_true_if_winning_sequence() -> None:
-    board = tictactoe.generate_board()
-    for location in tictactoe.WIN_LOCATIONS["row1"]:
-        board[location] = "X"
-    assert tictactoe.is_winner("1,3", board) is True, "Returns True for winning move"
+@pytest.mark.parametrize("expected_outcome, output_str",
+                         [(True, "Returns True for winning move"),
+                          (False, "Returns False for non-winning move")])
+def test_is_winner(expected_outcome, output_str) -> None:
+    for winning_locations in tictactoe.WIN_LOCATIONS.keys():
+        winning_squares = tictactoe.WIN_LOCATIONS[winning_locations]
+        player_move = min(winning_squares)
+        board = generate_filled_board(expected_outcome, player_move, winning_squares)
+        assert tictactoe.is_winner(player_move, board) is expected_outcome, \
+            output_str
 
 
 def test_is_winner_return_false_if_not_winning_sequence() -> None:
     board = tictactoe.generate_board()
     board["1,1"] = "X"
-    board["1,2"] = "O"
-    board["1,3"] = "x"
+    board["2,2"] = "O"
+    board["3,3"] = "x"
     assert tictactoe.is_winner("1,3", board) is False, \
         "Returns False for non-winning move"
 

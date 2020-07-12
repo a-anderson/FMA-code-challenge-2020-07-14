@@ -1,3 +1,4 @@
+#!/user/bin/env python3
 import re
 import time
 from typing import Optional, Dict
@@ -99,7 +100,7 @@ def player_instructions(player: int) -> None:
     :param player: int: {1 or 2}
     :return: None
     '''
-    print(f"Player {player}, enter coordinates"
+    print(f"Player {player}, enter coordinates "
           f"'<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'"
           "\n\tor enter 'q' to quit the game.")
 
