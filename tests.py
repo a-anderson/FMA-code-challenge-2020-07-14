@@ -47,15 +47,6 @@ def test_is_winner(expected_outcome, output_str) -> None:
             output_str
 
 
-def test_is_winner_return_false_if_not_winning_sequence() -> None:
-    board = tictactoe.generate_board()
-    board["1,1"] = "X"
-    board["2,2"] = "O"
-    board["3,3"] = "x"
-    assert tictactoe.is_winner("1,3", board) is False, \
-        "Returns False for non-winning move"
-
-
 @pytest.mark.parametrize("winner, expected_output, output_str",
                          [(None, "GAME OVER\n", "Prints no winner message if draw"),
                           (2, ("!!PLAYER 2 HAS WON THE GAME!!\n"
