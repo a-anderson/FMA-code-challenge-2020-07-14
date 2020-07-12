@@ -100,7 +100,7 @@ def player_instructions(player: int) -> None:
     :return: None
     '''
     print(f"Player {player}, enter coordinates"
-          "'<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'"
+          f"'<row>,<column>' to place your '{PLAYER_SYMBOLS[player]}'"
           "\n\tor enter 'q' to quit the game.")
 
 
@@ -237,6 +237,6 @@ if __name__ == "__main__":
     while True:
         play()
         play_again = input("Would you like to play again? [Y/n]").strip().lower()
-        if not play_again == 'y' and play_again:
+        if len(play_again) > 0 and not play_again[0] == 'y':
             break
     print("Thank you for playing Ashley's Tic Tac Toe.\n\tI hope you had fun!")
