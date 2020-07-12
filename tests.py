@@ -2,7 +2,7 @@ import pytest
 import tictactoe
 
 
-def generate_filled_board(win_state, player_move, winning_locations):
+def generate_filled_board(win_state, player_move, winning_locations) -> dict:
     board = tictactoe.generate_board()
     if win_state:
         for location in winning_locations:
