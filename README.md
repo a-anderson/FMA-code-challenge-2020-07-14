@@ -106,3 +106,18 @@ This is also the first time I have set up multiple script lines in Travis. Altho
 I think there are a few improvements that could be made to the game, many of which involve a better user experience. Despite the time delays and round dividers for better clarity, I think the game is still a bit jerky and not as easy to follow as it could be. One possible solution would be to use colored highlighting which can be done using the `curses` python library. This would make the active player, game board, and player feedback easier to see. However, I'm not sure how this would effect testing for the printed output. This is something I could explore further in my own time.
 
 Ultimately I think that using a GUI would be a much better overall experience for the user. However, given that we were explicitly asked *not* to write a GUI I left the game with a simple command line interface. 
+
+### Default Branch - Master or Main?
+I'm still not sure what to do about this one. With the recent Black Lives Matter protests in the US - which subsequently spread around the globe - there has been much more discussion about using more inclusive language. Many global tech companies, including GitHub, have committed to removing references to language that has been used to exclude or belittle minority groups (more information here: https://www.cnet.com/news/microsofts-github-is-removing-coding-terms-like-master-and-slave/). I am not sure if this is a more US-centric move, or if Australian companies are making a similar move to migrate away from the current "master" terminology.  
+
+At the time of creation for this project, "master" is still the name of the default branch created in GitHub, and so I wrote this project with "master" as the default branch. However, changing the name of the default branch should be quite simple: 
+- Create a new branch named "main" and push to GitHub.
+- In GitHub, select the "Branch: master" button at the top of the project.
+- Click the "view all branches" link.
+- Next to the "master" branch click the "change default branch" button.
+- Select "main". 
+
+I checked the MYOB Technologies GitHub projects (https://github.com/MYOB-Technology) as well as some of the public projects from MYOB developers, and all projects that I found are still using "master" as the default branch. This includes one project which was updated less than a week ago (at the time I am writing this). I have therefore left my default branch as "master", but would be happy to change it if requested.
+
+### Further Discussion
+The contents of this readme file are just a few points explaining my thought process for the decisions I made. I would, of course, be very happy to discuss any further questions or feedback.
