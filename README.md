@@ -58,12 +58,12 @@ mypy tictactoe.py
 ### My Approach:
 ### Game 
 **Using Base Python** \
-I chose to use libraries that are available in base python for this game. This served firstly to reduce the setup time to get everything up and running.
+I chose to use libraries that are available in base python for this game. This served firstly to reduce the setup time to get everything up and running, and secondly to avoid any issues with installing third-party libraries on different operating systems.
 
 **Functional Approach** \
 Python is a multi-paradigm programming language, allowing for the use of both object oriented and functional programming (I am less familiar with procedural and imperative programming, but python allows for these paradigms as well). I chose to use a mostly functional approach to build the tic tac toe game, which is the paradigm that I am most comfortable with. 
 
-**Using Hash Functions for Information Storage** \
+**Using Hash Tables for Information Storage** \
 Wherever I could I chose to use sets and dictionaries for data that stored multiple pieces of information, and that I called on frequently. This allowed for `if x in y` and `dict[key]` searches to be completed in O(1) time, rather than O(n) time for lists or tuples. With so few options for tic tac toe, this probably wouldn't make much difference in practical terms. However, I have found that it makes a huge difference in analysis run time for very large data sets (which I have used in bioinformatics analysis).
 
 Sets also have the added benefit of allowing for easy identification of the number of unique values contained within an iterable, which I used to identify if win conditions were met in the game.
@@ -95,10 +95,10 @@ I also used type-hinting in all of the tic tac toe functions. Coming from a data
 I used Travis for automated testing. For a project so small as this it is probably not necessary to have done this, however, I included it for three reasons:
 1. To ensure that the code ran on multiple versions of python.
 2. To allow any interested parties to see that all tests pass without needing to test everything for themselves.
-3. To catch any mistakes that I have made in the event that I forget to test the code before I commit it to the repository.  
+3. To catch any mistakes that I have made in the event that I forget to test the code before I push it to the repository.  
 
 ### What I Learned
-Although I have used `pytest` for small projects before, I have never used it to test standard output or for mocking user input. I used the `pytest` documentation to find the appropriate tools for the job. This lead me to `capsys` and subsequently to the `pytest.mark.paramaterize` decorator. This made it much easier to test multiple outputs for a single function. This allowed four separate tests to be condensed down to one, making to test code much easier to understand rather than just having many similarly named test functions stacked on top of one another. 
+Although I have used `pytest` for small projects before, I have never used it to test standard output or for mocking user input. I used the `pytest` documentation to find the appropriate tools for the job. This lead me to `capsys` and subsequently to the `pytest.mark.paramaterize` decorator. This made it much easier to test multiple outputs for a single function. This allowed four separate tests to be condensed down to one, making the test code much easier to understand rather than just having many similarly named test functions stacked on top of one another. 
 
 This is also the first time I have set up multiple script lines in Travis. Although this was extremely simple, I still found it a valuable lesson and will be able to apply multiple automated test commands going forward.
 
