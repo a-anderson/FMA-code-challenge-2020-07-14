@@ -3,6 +3,13 @@ import tictactoe
 
 
 def generate_filled_board(win_state, player_move, winning_locations) -> dict:
+    '''
+    Generates a board dict which satisfies winning or losing conditions.
+    :param win_state: bool: Whether or not board should show a winning outcome.
+    :param player_move: str: The location in which a player has placed their symbol on the board.
+    :param winning_locations: set: three board locations to fill.
+    :return: dict: filled game board.
+    '''
     board = tictactoe.generate_board()
     if win_state:
         for location in winning_locations:
